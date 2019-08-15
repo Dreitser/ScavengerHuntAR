@@ -85,6 +85,7 @@
                 success: function( data, textStatus, jQxhr ){
                     $('#response pre').html( JSON.stringify( data ) );
                     $("#webar").load('includes/contentSnippet.html?');
+                    $('form').hide;
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
