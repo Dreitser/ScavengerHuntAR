@@ -84,6 +84,7 @@
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
                     $('#response pre').html( JSON.stringify( data ) );
+                    $("a-scene").show();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
@@ -94,6 +95,7 @@
         }
 
         $('#my-form').submit( processForm );
+        $("a-scene").hide();
     })(jQuery);
 </script>
      <div id="container" class="collapsed">
