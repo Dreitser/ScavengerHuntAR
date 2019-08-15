@@ -84,8 +84,8 @@
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
                     $('#response pre').html( JSON.stringify( data ) );
-                    $("#webar").fadeIn();
-                    $('#my-form').fadeOut();
+//                     $("#webar").fadeIn();
+//                     $('#my-form').fadeOut();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
@@ -96,7 +96,7 @@
         }
 
         $('#my-form').submit( processForm );
-        $("#webar").fadeOut();
+//         $("#webar").fadeOut();
     })(jQuery);
 </script>
     <div id="webar">
@@ -117,7 +117,7 @@
     xrextras-runtime-error>
 
     <a-assets>
-      <a-asset-item id="frame-model" src="frame.glb?"></a-asset-item>
+      <a-asset-item id="frame-model" src="frame.glb"></a-asset-item>
     </a-assets>
 
     <a-camera id="camera" position="0 4 10"
