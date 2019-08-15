@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AJAX POST Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+      <!-- We've included a slightly modified version of A-Frame, which fixes some polish concerns -->
+      <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+
+      <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
+             See github.com/8thwall/web/xrextras -->
+      <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+
+      <!-- 8thWall Web - Replace the app key here with your own app key -->
+      <script
+        src="//apps.8thwall.com/xrweb?appKey=XXXXX"></script>
+
+     <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="response">
+    <pre></pre>
+</div>
+<section class="content">
+ <div class="testing">
+      <p>SEMrush Scavenger Hunt</p>
+    </div>
+<form class="content__form contact-form" id="my-form">
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">First Name</label>
+        <input class="contact-form__input contact-form__input--text" id="fname" name="fname" autocomplete="fname" type="text"/>
+    </div>
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Last Name</label>
+        <input class="contact-form__input contact-form__input--text" id="lname" name="lname" autocomplete="lname" type="text"/>
+    </div>
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Phone</label>
+        <input class="contact-form__input contact-form__input--text" id="phone" name="phone" type="tel"/>
+    </div>
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Email</label>
+        <input class="contact-form__input contact-form__input--text" id="username" name="username" type="email"/>
+    </div>
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Company</label>
+        <input class="contact-form__input contact-form__input--text" id="company" name="company" type="text"/>
+    </div>
+    <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Job Title</label>
+        <input class="contact-form__input contact-form__input--text" id="title" name="title" type="text"/>
+    </div>
+     <div class="contact-form__input-group">
+        <label class="contact-form__label" for="name">Found Animals</label>
+        <input class="contact-form__input contact-form__input--text" id="score" name="score" type="text"  />
+    </div>       
+
+    <button class="contact-form__button" type="submit">Submit</button>
+</form>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    (function($){
+        function processForm( e ){
+            $.ajax({
+                url: 'https://scav1.herokuapp.com/players/',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+
+                data: JSON.stringify( { 
+                "fname": $('#fname').val(), 
+                "lname": $('#lname').val(),
+                "phone": $('#phone').val(),
+                "username": $('#username').val(),
+                "company": $('#company').val(),
+                "title": $('#title').val(), 
+                "score": $('#score').val() 
+                } ),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    $('#response pre').html( JSON.stringify( data ) );
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+
+            e.preventDefault();
+        }
+
+        $('#my-form').submit( processForm );
+    })(jQuery);
+</script>
+</body>
+</html>
