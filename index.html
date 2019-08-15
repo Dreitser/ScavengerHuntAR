@@ -6,7 +6,39 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>AR TRAILER</title>
+  <script>
+    AFRAME.registerComponent('semrush1', {
+      schema: {
+        name: { type: 'string' }
+      },
+      init: function () {
+        const object3D = this.el.object3D
+        const name = this.data.name
+        object3D.visible = false
 
+        const showImage = ({detail}) => {
+          if (name != detail.name) {
+            return
+          }
+          object3D.position.copy(detail.position)
+          object3D.quaternion.copy(detail.rotation)
+          object3D.scale.set(detail.scale, detail.scale, detail.scale)
+          object3D.visible = true
+        }
+
+        const hideImage = ({detail}) => {
+          if (name != detail.name) {
+            return
+          }
+          object3D.visible = false
+        }
+
+        this.el.sceneEl.addEventListener('xrimagefound', showImage)
+        this.el.sceneEl.addEventListener('xrimageupdated', showImage)
+        this.el.sceneEl.addEventListener('xrimagelost', hideImage)
+      }
+    })
+  </script>
   <script src="//cdn.8thwall.com/web/aframe/8frame-0.9.0.min.js"></script>
 
   <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
