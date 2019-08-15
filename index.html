@@ -30,14 +30,8 @@
     <a-assets>
       <!-- Credit to Poly by Google for the model: https://poly.google.com/view/dA5osnS0Rzj -->
       
-      <img id="jelly-thumb" src="vrto.jpg">
-      <video
-        id="jelly-video"
-        autoplay
-        crossorigin="anonymous"
-        loop="true"
-        src="vrto.mp4">
-      </video>
+       <img id="jelly-thumb" src="vrto.jpg">
+       <a-asset-item id="fox1" src="fox1.glb"></a-asset-item>
     </a-assets>
 
     <a-camera
@@ -51,12 +45,14 @@
     <a-light type="ambient" intensity="1"></a-light>
 
     <!-- Note: "name:" must be set to the name of the image target uploaded to the 8th Wall Console -->
-    <a-entity
-      xrextras-named-image-target="name: flyer1"
-      xrextras-play-video="video: #jelly-video; thumb: #jelly-thumb; canstop: true"
-      geometry="primitive: plane; height: .52; width: .8;">
+    <a-entity xrextras-named-image-target="name: semrush1">
+          <!-- Add a child entity that can be rotated independently of the image target. -->
+          <a-entity xrextras-one-finger-rotate gltf-model="#fox1"></a-entity>
     </a-entity>
-
+    <a-entity xrextras-named-image-target="name: semrush2">
+          <!-- Add a child entity that can be rotated independently of the image target. -->
+          <a-entity xrextras-one-finger-rotate gltf-model="#fox1"></a-entity>
+    </a-entity>
     <!-- Note: "name:" must be set to the name of the image target uploaded to the 8th Wall Console -->
    
 
