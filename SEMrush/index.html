@@ -84,7 +84,7 @@
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
                     $('#response pre').html( JSON.stringify( data ) );
-                    $("a-scene").show();
+                    $("#webar").show();
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
@@ -95,9 +95,10 @@
         }
 
         $('#my-form').submit( processForm );
-        $("a-scene").hide();
+        $("#webar").hide();
     })(jQuery);
 </script>
+    <div id="webar">
      <div id="container" class="collapsed">
     <div class="outer">
       <div id="closeButton" onclick="document.getElementById('container').classList.add('collapsed')">close</div>
@@ -125,5 +126,6 @@
     <a-light type="ambient" intensity="1.3"></a-light>
     <a-light type="directional" intensity="3" position="1.5 2.5 0.6"></a-light>
   </a-scene>
+</div>
 </body>
 </html>
