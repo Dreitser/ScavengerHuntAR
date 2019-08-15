@@ -84,7 +84,7 @@
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
                     $('#response pre').html( JSON.stringify( data ) );
-                    $("#webar").load('includes/contentSnippet.html');
+                    $("#webar").load('includes/contentSnippet.html?');
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
