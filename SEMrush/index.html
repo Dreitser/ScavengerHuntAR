@@ -103,43 +103,6 @@
 //         $("#webar").fadeOut();
     })(jQuery);
 </script>
-    <div id="webar">
-       <a-scene
-        xrweb="disableWorldTracking: true"
-        xrextras-gesture-detector
-        xrextras-almost-there
-        xrextras-loading
-        xrextras-runtime-error>
-
-        <a-assets>
-          <!-- Credit to Poly by Google for the model: https://poly.google.com/view/dA5osnS0Rzj -->
-          <a-asset-item id="jelly-glb" src="jellyfish-model.glb"></a-asset-item>
-          <img id="sem-thumb1" src="sticker1.jpg?">
-          <img id="sem-thumb2" src="sticker2.jpg?">
-        </a-assets>
-
-        <a-camera
-          position="0 4 10"
-          raycaster="objects: .cantap"
-          cursor="fuse: false; rayOrigin: mouse;">
-        </a-camera>
-
-        <a-light type="directional" intensity="0.5" position="1 1 1"></a-light>
-
-        <a-light type="ambient" intensity="1"></a-light>
-
-        <!-- Note: "name:" must be set to the name of the image target uploaded to the 8th Wall Console -->
-        <a-entity xrextras-named-image-target="name: semrush1">
-            <a-entity xrextras-one-finger-rotate gltf-model="#jelly-glb">
-        </a-entity>
-
-        <!-- Note: "name:" must be set to the name of the image target uploaded to the 8th Wall Console -->
-        <a-entity xrextras-named-image-target="name: semrush2">
-          <!-- Add a child entity that can be rotated independently of the image target. -->
-          <a-entity xrextras-one-finger-rotate gltf-model="#jelly-glb"></a-entity>
-        </a-entity>
-
-      </a-scene>
-    </div>
+   
 </body>
 </html>
