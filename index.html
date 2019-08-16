@@ -17,6 +17,7 @@
         object3D.visible = false
 
         const showImage = ({detail}) => {
+          container.classList.remove('collapsed')
           if (name != detail.name) {
             return
           }
@@ -34,7 +35,7 @@
         }
 
         this.el.sceneEl.addEventListener('xrimagefound', showImage)
-        this.el.sceneEl.addEventListener('xrimageupdated', showImage)
+//         this.el.sceneEl.addEventListener('xrimageupdated', showImage)
         this.el.sceneEl.addEventListener('xrimagelost', hideImage)
       }
     })
@@ -51,6 +52,13 @@
 </head>
 
 <body>
+  <div id="container" class="collapsed">
+    <div class="outer">
+      <div id="closeButton" onclick="document.getElementById('container').classList.add('collapsed')">close</div>
+    </div>
+    <div id="contents"></div>
+    <div class="outer">Article provided by Wikipedia</div>
+  </div>
 
   <a-scene
     xrweb="disableWorldTracking: true"
