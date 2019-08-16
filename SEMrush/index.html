@@ -58,11 +58,12 @@
         <label class="contact-form__label" for="name">Job Title</label>
         <input class="contact-form__input contact-form__input--text" id="title" name="title" type="text"/>
     </div>
+   
+     <input name="score" type="hidden" value="0"/>
      <div class="contact-form__input-group">
-        <label class="contact-form__label" for="name">Found Animals</label>
-        <input class="contact-form__input contact-form__input--text" id="score" name="score" type="text"  />
-    </div>       
-
+     <input class="contact-form__input contact-form__input--checkbox" id="agree" name="agree" type="checkbox" value="agree"/>
+     <label class="contact-form__label contact-form__label--checkbox" for="agree">Agree to <a href=#>terms.</terms></label>   
+     </div>
     <button class="contact-form__button" type="submit">Submit</button>
 </form>
 </section>
