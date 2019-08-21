@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=yes">
+  <title>Image Target Preview</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- THREE.js must be supplied -->
+  <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+
+  <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
+         See github.com/8thwall/web/xrextras -->
+  <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+
+  <!-- 8thWall Web - Replace the app key here with your own app key -->
+  <script async="false"
+    src="//apps.8thwall.com/xrweb?appKey=vop8i8RANQNP90CuO6SsR7J5rhjuIzrO76OJaWbhzDxxo3ATsSUoEnDKnjnDzMsg3tx6n0"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('image-target', {
+      schema: {
+        name: { type: 'string' },
+        rotated: { type: 'bool' }
+      },
+      init: function () {
+        const detectedImageObjects = {}
+        this.hudTextEl = document.getElementById("canvasText")
+        this.hudTextParent = document.getElementById("canvasParent")
+        this.imageList = document.getElementById("imageList")
+        this.overlay = document.getElementById("overlay")
+
+        const logEvent = (event) => {
+          console.log('[log-event] ' + JSON.stringify(event))
+        }
+
+        const imageLoading = (event) => {
+          const targets = event.detail.imageTargets
+          const numTargets = targets.length
+          const names = targets.map(t => t.name)
+          const namesJoined = names.join("\n")
+
+          if (numTargets == 1) {
+            const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
+            this.hudTextParent.setAttribute("style", "bottom: 10%;");
+            this.hudTextEl.innerText = hudText
+          } else {
+            const hudText = !!targets ? "Looking for " + numTargets + " images" : "Loading"
+            this.hudTextEl.innerText = hudText
+            this.imageList.innerText = namesJoined
+          }
+
+        }
+
+        const imageFound = (event) => {
+          logEvent(event)
+          imageUpdated(event)
+
+          if (this.overlay.style.display != "none") {
+            this.overlay.style.display = "none";
+          }
+
+          const name = event.detail.name
+          this.el.emit('updatetitle', { value: name })
+        }
+
+        const imageUpdated = (event) => {
+          const img = event.detail
+          const p = img.position
+          const q = img.rotation
+
+          if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
+
+            const detectedImageObject = this.el.object3D
+            detectedImageObject.position.set(p.x, p.y, p.z)
+            detectedImageObject.quaternion.set(q.x, q.y, q.z, q.w)
+            detectedImageObject.scale.set(img.scale, img.scale, img.scale)
+            detectedImageObject.visible = true
+          }
+        }
+
+        const imageLost = (event) => {
+          if (this.overlay.style.display == "none") {
+            this.overlay.style.display = "block";
+          }
+          const detectedImageObject = this.el.object3D
+          detectedImageObject.visible = false
+          logEvent(event)
+        }
+
+        console.log(window.XR)
+
+        // Add callbacks for image targets.
+        XR.addCameraPipelineModule({
+          // Camera pipeline modules need a name. It can be whatever you want but must be unique
+          // within your app.
+          name: 'previewit' + this.data.rotated,
+
+          // Listeners are called right after the processing stage that fired them. This guarantees
+          // that updates can be applied at an appropriate synchronized point in the rendering
+          // cycle.
+          listeners: [
+            { event: 'reality.imageloading', process: imageLoading },
+            { event: 'reality.imagescanning', process: logEvent },
+            { event: 'reality.imagefound', process: imageFound },
+            { event: 'reality.imageupdated', process: imageUpdated },
+            { event: 'reality.imagelost', process: imageLost },
+          ],
+        })
+      }
+    });
+
+    AFRAME.registerComponent('show-when-ready', {
+      init: function () {
+        let scene = this.el.sceneEl
+        let title = document.querySelector("#title")
+        let overlay = document.querySelector("#overlay")
+
+        scene.addEventListener('realityready', () => {
+          // Hide loading UI
+          title.style.display = "block"
+          overlay.style.display = "block"
+        })
+      }
+
+    })
+
+    AFRAME.registerComponent('text-update', {
+      init: function () {
+        let scene = this.el.sceneEl;
+        var el = this.el
+
+        text_truncate = function (str) {
+          if (str.length > 20) {
+            return str.substring(0, 17) + '...';
+          } else {
+            return str
+          }
+        };
+
+        scene.addEventListener('updatetitle', function (event) {
+          const s = text_truncate(event.detail.value)
+          el.setAttribute('value', s)
+        });
+
+      }
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WHW972G');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHW972G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="title" style="z-index: 799; display: none;">Image Target Preview</div>
+
+  <div id="overlay" style="display: none;">
+    <img id="frame" src="corner-shadow.svg">
+
+    <div id="canvasParent">
+      <span id="canvasText">Loading</span>
+      <span class="one">.</span><span class="two">.</span><span class="three">.</span>
+      <div id="imageList"></div>
+    </div>
+
+  </div>
+
+  <a-scene 
+    xrweb="disableWorldTracking: true" 
+    antialias="true" 
+    xrextras-almost-there 
+    xrextras-loading 
+    xrextras-runtime-error 
+    show-when-ready>
+
+    <a-assets>
+      <!-- Credit to Poly by Google for the model: https://poly.google.com/view/dA5osnS0Rzj -->
+      <a-asset-item id="frame-portrait" src="frame-portrait.glb"></a-asset-item>
+      <a-asset-item id="frame-landscape" src="frame-landscape.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera position="0 4 10" near="0.001">
+    </a-camera>
+
+    <a-light type="ambient" intensity="1.3"></a-light>
+
+    <a-entity position="0 4 9.2" image-target="rotated: false;" visible="false">
+
+      <a-entity id="frame-port-obj" position="0 0 0" scale="1.05 1.05 1.05" gltf-model="#frame-portrait"></a-entity>
+      <a-text text-update value="" align="center" width="1.75" position="0 -0.6 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+
+    <a-entity position="0 4 9.2" image-target="rotated: true;" visible="false">
+
+      <a-entity id="frame-land-obj" scale="1.05 1.05 1.05" rotation="0 0 90" gltf-model="#frame-landscape"></a-entity>
+      <a-text text-update value="" align="center" width="1.75" rotation="0 0 0" position="0 -0.5 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-land-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+
+  </a-scene>
+
+</body>
+
+</html>
