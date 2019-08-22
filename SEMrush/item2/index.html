@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=yes">
-  <title>Image Target Preview</title>
+  <title>Scavenger Hunt AR</title>
   <link rel="stylesheet" type="text/css" href="index.css">
 
   <!-- THREE.js must be supplied -->
@@ -42,27 +42,26 @@
           const namesJoined = names.join("\n")
 
           if (numTargets == 1) {
-            const hudText = !!targets ? "Found" + namesJoined : "Loading"
+            const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
             this.hudTextParent.setAttribute("style", "bottom: 10%;");
             this.hudTextEl.innerText = hudText
           } else {
-            const hudText = !!targets ? "Found " + numTargets + " stickers" : "Loading"
+            const hudText = !!targets ? "Looking for " + numTargets + " images" : "Loading"
             this.hudTextEl.innerText = hudText
             this.imageList.innerText = namesJoined
           }
 
         }
-       
+
         const imageFound = (event) => {
           logEvent(event)
           imageUpdated(event)
-          
+
           if (this.overlay.style.display != "none") {
             this.overlay.style.display = "none";
           }
 
           const name = event.detail.name
-
           this.el.emit('updatetitle', { value: name })
         }
 
