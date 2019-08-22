@@ -38,10 +38,11 @@
         const imageLoading = (event) => {
           const targets = event.detail.imageTargets
           const numTargets = targets.length
+          names = JSON.parse(detectedImageObjects);
           //const names = targets.map(t => t.name)
-          //const names = detectedImageObjects
-          const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
-          //const namesJoined = detectedImageObjects.values(parent).join("\n");
+          //const names = detectedImageObjects.join("\n")
+          //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
+          const namesJoined = names.join("\n");
 
           if (numTargets == 1) {
             const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
@@ -93,6 +94,16 @@
           const detectedImageObject = this.el.object3D
           detectedImageObject.visible = false
           logEvent(event)
+          
+          
+          names = JSON.parse(detectedImageObjects);
+          //const names = targets.map(t => t.name)
+          //const names = detectedImageObjects.join("\n")
+          //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
+          const namesJoined = names.join("\n");
+          
+            this.imageList.innerText = namesJoined
+          
         }
 
         console.log(window.XR)
