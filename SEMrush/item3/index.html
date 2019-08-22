@@ -25,7 +25,7 @@
         rotated: { type: 'bool' }
       },
       init: function () {
-        const detectedImageObjects = {}
+        const detectedImageObjects = {"items"}
         this.hudTextEl = document.getElementById("canvasText")
         this.hudTextParent = document.getElementById("canvasParent")
         this.imageList = document.getElementById("imageList")
@@ -39,8 +39,8 @@
           const targets = event.detail.imageTargets
           const numTargets = targets.length
           //const names = targets.map(t => t.name)
-          const names = detectedImageObjects
-          const namesJoined = names.join("\n")
+          //const names = detectedImageObjects
+          const namesJoined = detectedImageObjects.values(parent).join("\n");
 
           if (numTargets == 1) {
             const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
