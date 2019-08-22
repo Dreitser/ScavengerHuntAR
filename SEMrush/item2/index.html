@@ -52,14 +52,14 @@
           }
 
         }
-       const addElement (detectedObj , event) {
+       function addElement (detectedObj , event) {
               let newList = Object.assign(detectedObj, event)
               return newList
           }
         const imageFound = (event) => {
           logEvent(event)
           imageUpdated(event)
-          detectedImageObjects.addElement(detectedImageObjects,event)
+          detectedImageObjects = addElement(detectedImageObjects,event)
           
          
           
