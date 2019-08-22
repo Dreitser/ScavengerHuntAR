@@ -100,8 +100,9 @@
           //const names = detectedImageObjects.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
 //           const namesJoined = names.join("\n");
-            const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
-            namesJoined = namesJoined.replace(/("{|}| ")/gi,'"');
+            namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
+            namesJoined = namesJoined.replace(/("{|}")/gi,'"');
+            namesJoined = namesJoined.trim()
             this.imageList.innerText = namesJoined
           
         }
