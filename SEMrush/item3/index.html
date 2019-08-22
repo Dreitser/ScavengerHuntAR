@@ -62,10 +62,10 @@
           }
 
           const name = event.detail.name
-          if ( !( 'name' in detectedImageObjects ) ) {
-              detectedImageObjects['name'] = true;
+          if ( !( name in detectedImageObjects ) ) {
+              detectedImageObjects[name] = 'Found';
           }
-         console.log('JSON.stringify(detectedImageObjects))
+          console.log('JSON.stringify(detectedImageObjects))
           this.el.emit('updatetitle', { value: name })
         }
 
