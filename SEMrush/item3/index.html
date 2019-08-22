@@ -99,6 +99,7 @@
           logEvent(event)
           
           const keys = Object.keys(detectedImageObjects)
+          const keysJoined = keys.join("\n")
 //             names = JSON.stringify(detectedImageObjects)
 //             namesArray = JSON.parse(names)
           //const names = targets.map(t => t.name)            
@@ -108,8 +109,8 @@
 //             namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
 //             namesJoined.replace(/("{|}")/gi,'"');
 //             namesJoined.trim();
-          
-            this.imageList.innerText = keys;
+            this.hudTextEl.innerText = "Found: /n"
+            this.imageList.innerText = keysJoined;
           
         }
 
