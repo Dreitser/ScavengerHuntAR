@@ -56,12 +56,16 @@
         const imageFound = (event) => {
           logEvent(event)
           imageUpdated(event)
-
+          
           if (this.overlay.style.display != "none") {
             this.overlay.style.display = "none";
           }
 
           const name = event.detail.name
+          if ( !( 'name' in detectedImageObjects ) ) {
+              detectedImageObjects['name'] = true;
+          }
+          logEvent(detectedImageObjects)
           this.el.emit('updatetitle', { value: name })
         }
 
