@@ -97,12 +97,8 @@
           const detectedImageObject = this.el.object3D
           detectedImageObject.visible = false
           logEvent(event)
-          namesArray =""
-          for (var property in detectedImageObjects) {
-            if (object.hasOwnProperty(property)) {
-              namesArray = namesArray + property + "/n"
-              }
-           }
+          
+          const keys = Object.keys(detectedImageObjects)
 //             names = JSON.stringify(detectedImageObjects)
 //             namesArray = JSON.parse(names)
           //const names = targets.map(t => t.name)            
@@ -112,7 +108,8 @@
 //             namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
 //             namesJoined.replace(/("{|}")/gi,'"');
 //             namesJoined.trim();
-            this.imageList.innerText = namesArray;
+          
+            this.imageList.innerText = keys;
           
         }
 
