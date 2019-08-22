@@ -38,20 +38,20 @@
         const imageLoading = (event) => {
           const targets = event.detail.imageTargets
           const numTargets = targets.length
-          names = JSON.parse(detectedImageObjects);
+//           const names = JSON.parse(detectedImageObjects);
           //const names = targets.map(t => t.name)
           //const names = detectedImageObjects.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
-          const namesJoined = names.join("\n");
+//           const namesJoined = names.join("\n");
 
           if (numTargets == 1) {
-            const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
+//             const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
             this.hudTextParent.setAttribute("style", "bottom: 10%;");
             this.hudTextEl.innerText = hudText
           } else {
             const hudText = !!targets ? "Looking for " + numTargets + " images" : "Loading"
             this.hudTextEl.innerText = hudText
-            this.imageList.innerText = namesJoined
+//             this.imageList.innerText = namesJoined
           }
 
         }
@@ -95,8 +95,7 @@
           detectedImageObject.visible = false
           logEvent(event)
           
-          
-          names = JSON.parse(detectedImageObjects);
+          const names = JSON.parse(detectedImageObjects);
           //const names = targets.map(t => t.name)
           //const names = detectedImageObjects.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
