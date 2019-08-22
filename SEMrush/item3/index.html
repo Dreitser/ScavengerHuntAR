@@ -25,7 +25,7 @@
         rotated: { type: 'bool' }
       },
       init: function () {
-        const detectedImageObjects = {"Baby Fox": "Not Found"}
+        const detectedImageObjects = {}
         this.hudTextEl = document.getElementById("canvasText")
         this.hudTextParent = document.getElementById("canvasParent")
         this.imageList = document.getElementById("imageList")
@@ -95,7 +95,7 @@
           detectedImageObject.visible = false
           logEvent(event)
           
-          const names = JSON.parse(detectedImageObjects);
+          const names = JSON.parse(JSON.stringify(detectedImageObjects));
           //const names = targets.map(t => t.name)
           //const names = detectedImageObjects.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
