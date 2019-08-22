@@ -95,15 +95,16 @@
           detectedImageObject.visible = false
           logEvent(event)
           
-//           const names = JSON.parse(JSON.stringify(detectedImageObjects));
+            names = JSON.stringify(detectedImageObjects)
+            namesArray = JSON.parse(names)
           //const names = targets.map(t => t.name)
-          //const names = detectedImageObjects.join("\n")
+            namesArray = namesArray.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
 //           const namesJoined = names.join("\n");
-            namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
-            namesJoined.replace(/("{|}")/gi,'"');
-            namesJoined.trim();
-            this.imageList.innerText = namesJoined;
+//             namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
+//             namesJoined.replace(/("{|}")/gi,'"');
+//             namesJoined.trim();
+            this.imageList.innerText = namesArray;
           
         }
 
