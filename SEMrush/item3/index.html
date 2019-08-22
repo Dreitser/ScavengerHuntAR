@@ -40,7 +40,8 @@
           const numTargets = targets.length
           //const names = targets.map(t => t.name)
           //const names = detectedImageObjects
-          const namesJoined = detectedImageObjects.values(parent).join("\n");
+          const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
+          //const namesJoined = detectedImageObjects.values(parent).join("\n");
 
           if (numTargets == 1) {
             const hudText = !!targets ? "Looking for " + namesJoined : "Loading"
