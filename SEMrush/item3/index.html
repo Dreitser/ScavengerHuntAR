@@ -37,7 +37,10 @@
 
         const imageLoading = (event) => {
           const targets = event.detail.imageTargets
-          const numTargets = targets.length
+          const numTargets = targets.length       
+          const names = targets.map(t => t.name)
+          
+          const namesJoined = names.join("\n")
 //           const names = JSON.parse(detectedImageObjects);
           //const names = targets.map(t => t.name)
           //const names = detectedImageObjects.join("\n")
@@ -94,11 +97,16 @@
           const detectedImageObject = this.el.object3D
           detectedImageObject.visible = false
           logEvent(event)
-          
-            names = JSON.stringify(detectedImageObjects)
-            namesArray = JSON.parse(names)
-          //const names = targets.map(t => t.name)
-            namesArray = namesArray.join("\n")
+          namesArray =""
+          for (var property in detectedImageObjects) {
+            if (object.hasOwnProperty(property)) {
+              namesArray = namesArray + property + "/n"
+              }
+           }
+//             names = JSON.stringify(detectedImageObjects)
+//             namesArray = JSON.parse(names)
+          //const names = targets.map(t => t.name)            
+//            namesArray = namesArray.join("\n")
           //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
 //           const namesJoined = names.join("\n");
 //             namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
