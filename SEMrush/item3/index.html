@@ -38,7 +38,8 @@
         const imageLoading = (event) => {
           const targets = event.detail.imageTargets
           const numTargets = targets.length
-          const names = targets.map(t => t.name)
+          //const names = targets.map(t => t.name)
+          const names = detectedImageObjects
           const namesJoined = names.join("\n")
 
           if (numTargets == 1) {
@@ -63,7 +64,7 @@
 
           const name = event.detail.name
           if ( !( name in detectedImageObjects ) ) {
-              detectedImageObjects['name'] = name;
+              detectedImageObjects[name] = 'found';
           }
           console.log(JSON.stringify(detectedImageObjects))
           this.el.emit('updatetitle', { value: name })
