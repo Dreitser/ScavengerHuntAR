@@ -65,7 +65,7 @@
           if ( !( 'name' in detectedImageObjects ) ) {
               detectedImageObjects['name'] = true;
           }
-          logEvent(detectedImageObjects)
+         console.log('JSON.stringify(detectedImageObjects))
           this.el.emit('updatetitle', { value: name })
         }
 
