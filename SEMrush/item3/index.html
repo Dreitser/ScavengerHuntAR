@@ -52,7 +52,8 @@
             this.hudTextParent.setAttribute("style", "bottom: 10%;");
             this.hudTextEl.innerText = hudText
           } else {
-            const hudText = !!targets ? "Look for " + numTargets + " Foxes " : "Connecting"
+            const hudText = !!targets ? "Collect All " + numTargets + " Animals " : "Connecting"
+            this.hudTextParent.setAttribute("style", "bottom: 10%;");
             this.hudTextEl.innerText = hudText
             this.imageList.innerText = namesJoined
           }
@@ -109,7 +110,7 @@
 //             namesJoined = JSON.stringify(detectedImageObjects, null, "\n")
 //             namesJoined.replace(/("{|}")/gi,'"');
 //             namesJoined.trim();
-            this.hudTextEl.innerText = "Find More Stickers"
+            this.hudTextEl.innerText = "Collect More Animals"
             this.imageList.innerText = keysJoined;
           
         }
