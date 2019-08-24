@@ -70,6 +70,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     (function($){
+        $("[name='fname']").prop("required", true);
+        $("[name='lname']").prop("required", true);
+        $("[name='phone']").prop("required", true);
+        $("[name='username']").prop("required", true);
+        $("[name='company']").prop("required", true);
+        $("[name='title']").prop("required", true);
+        $("[name='agree']").prop("required", true);
         function processForm( e ){
             $.ajax({
                 url: 'https://scav1.herokuapp.com/players/',
@@ -96,11 +103,11 @@
                     console.log( errorThrown );
                 }
             });
-
+        
             e.preventDefault();
         }
 
-        $('#my-form').submit( processForm );
+        $('#my-form').submit( formcheck );
 //         $("#webar").fadeOut();
     })(jQuery);
 </script>
