@@ -41,11 +41,6 @@
           const names = targets.map(t => t.name)
           
           const namesJoined = names.join("\n")
-//           const names = JSON.parse(detectedImageObjects);
-          //const names = targets.map(t => t.name)
-          //const names = detectedImageObjects.join("\n")
-          //const namesJoined = JSON.stringify(detectedImageObjects, null, "\n");
-//           const namesJoined = names.join("\n");
 
           if (numTargets == 1) {
             const hudText = !!targets ? "Look fo " + namesJoined : "Connecting"
@@ -61,33 +56,35 @@
         }
 
         const imageFound = (event) => {
-         
-         
-          
-          if (this.overlay.style.display != "none") {
+         if (this.overlay.style.display != "none") {
             this.overlay.style.display = "none";
           }
 
           const name = event.detail.name
-        
+          console.log(event.detail.name)
               if (name == "Social Media")
               {
+                console.log("Fox Hole")
                 var d = Math.random();
-                if (d < 0.5)
-                    // 50% chance of being here
+                if (d < 0.5){                    
                     this.el.emit('updatetitle', { value: "Fox is not here." })
-                else if (d < 0.99)
+                    babyFox = true;
+                }
+                else if (d < 0.99) {
                     // 49% chance of being here
                     this.el.emit('updatetitle', { value: "Fox has been here recently." })
-                else
-                    // 1% chance of being here
                     babyFox = true;
+                }else{
+                    babyFox = false;
+                    // 1% chance of being here
                     if ( !( name in detectedImageObjects ) ) {
                       detectedImageObjects[name] = 'found';
                     }
                     console.log(JSON.stringify(detectedImageObjects))
                     this.el.emit('updatetitle', { value: name })
+                }
               } else {
+               console.log("Not Fox Hole")
                babyFox = false;
                if ( !( name in detectedImageObjects ) ) {
                   detectedImageObjects[name] = 'found';
@@ -107,7 +104,7 @@
           const q = img.rotation
 
          // if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
-         if ((!babyFox) == this.data.rotated) {
+         if ((babyFox) == this.data.rotated) {
             const detectedImageObject = this.el.object3D
             detectedImageObject.position.set(p.x, p.y, p.z)
             detectedImageObject.quaternion.set(q.x, q.y, q.z, q.w)
