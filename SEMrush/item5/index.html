@@ -31,6 +31,7 @@
         this.imageList = document.getElementById("imageList")
         this.overlay = document.getElementById("overlay")
         var babyFox = false;
+        var currentFox = "";
         const logEvent = (event) => {
           console.log('[log-event] ' + JSON.stringify(event))
         }
@@ -47,7 +48,7 @@
             this.hudTextParent.setAttribute("style", "bottom: 20%;");
             this.hudTextEl.innerText = hudText
           } else {
-            const hudText = !!targets ? "Collect All SEMrush Toolkit Foxes" + numTargets + " Animals " : "Connecting"
+            const hudText = !!targets ? "Collect All SEMrush Toolkit Foxes" : "Connecting"
             this.hudTextParent.setAttribute("style", "bottom: 20%;");
             this.hudTextEl.innerText = hudText
            // this.imageList.innerText = namesJoined
@@ -84,8 +85,11 @@
                     this.el.emit('updatetitle', { value: name })
                 }
               } else {
-               console.log("Not Fox Hole")
+
+               console.log("Fox found: " + name)
                babyFox = false;
+               currentFox = name;
+
                if ( !( name in detectedImageObjects ) ) {
                   detectedImageObjects[name] = 'found';
                 }
@@ -103,8 +107,10 @@
           const p = img.position
           const q = img.rotation
 
+
+
          // if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
-         if ((babyFox) == this.data.rotated) {
+          if ((babyFox) == this.data.rotated && currentFox == this.data.animal ) {
             const detectedImageObject = this.el.object3D
             detectedImageObject.position.set(p.x, p.y, p.z)
             detectedImageObject.quaternion.set(q.x, q.y, q.z, q.w)
@@ -238,9 +244,40 @@
 
     <a-light type="ambient" intensity="1.3"></a-light>
 
-    <a-entity position="0 4 9.2" image-target="rotated: false;" visible="false">
+    <a-entity position="0 4 9.2" image-target="rotated: false; animal: 'Advertising Fox';" visible="false">
 
-      <a-entity id="frame-port-obj" position="0 0 0" scale="1.05 1.05 1.05" gltf-model="#fox2"></a-entity>
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
+      <a-text text-update value="" align="center" width="2.5" position="0 -1.3 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+
+    <a-entity position="0 4 9.2" image-target="rotated: false; animal: 'Competitive Research Fox';" visible="false">
+
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
+      <a-text text-update value="" align="center" width="2.5" position="0 -1.3 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+
+    <a-entity position="0 4 9.2" image-target="rotated: false; animal: 'Content Marketing Fox';" visible="false">
+
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
+      <a-text text-update value="" align="center" width="2.5" position="0 -1.3 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+
+    <a-entity position="0 4 9.2" image-target="rotated: false; animal: 'SEO Fox';" visible="false">
+
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
+      <a-text text-update value="" align="center" width="2.5" position="0 -1.3 0.04"></a-text>
+      <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
+
+    </a-entity>
+    <a-entity position="0 4 9.2" image-target="rotated: false; animal: 'Social Media Fox';" rotation="0 -90 0" visible="false">
+
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
       <a-text text-update value="" align="center" width="2.5" position="0 -1.3 0.04"></a-text>
       <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
 
