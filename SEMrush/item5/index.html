@@ -43,14 +43,14 @@
           const namesJoined = names.join("\n")
 
           if (numTargets == 1) {
-            const hudText = !!targets ? "Look fo " + namesJoined : "Connecting"
+            const hudText = !!targets ? "Look for " + namesJoined : "Connecting"
             this.hudTextParent.setAttribute("style", "bottom: 20%;");
             this.hudTextEl.innerText = hudText
           } else {
-            const hudText = !!targets ? "Collect All " + numTargets + " Animals " : "Connecting"
+            const hudText = !!targets ? "Collect All SEMrush Toolkit Foxes" + numTargets + " Animals " : "Connecting"
             this.hudTextParent.setAttribute("style", "bottom: 20%;");
             this.hudTextEl.innerText = hudText
-            this.imageList.innerText = namesJoined
+           // this.imageList.innerText = namesJoined
           }
 
         }
@@ -126,7 +126,8 @@
           const keysJoined = keys.join("\n")
 
             this.hudTextEl.innerText = "Hunt for the SEMrush Toolkit Foxes"
-            this.imageList.innerText = keysJoined;
+           // this.imageList.innerText = keysJoined;
+            this.imageList.innerText = keys.length;
           
         }
 
