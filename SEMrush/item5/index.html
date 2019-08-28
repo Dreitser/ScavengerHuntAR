@@ -63,9 +63,11 @@
 
           const name = event.detail.name
           console.log(event.detail.name)
+          currentFox = name;
               if (name == "Social Media Fox")
               {
-                console.log("Fox Hole")
+                console.log("Fox Hole");
+
                 var d = Math.random();
                 if (d < 0.5){                    
                     this.el.emit('updatetitle', { value: "Fox is not here." })
@@ -88,7 +90,7 @@
 
             
                babyFox = false;
-               currentFox = name;
+         
                console.log("Fox found1: " + currentFox)
                if ( !( name in detectedImageObjects ) ) {
                   detectedImageObjects[name] = 'found';
@@ -108,7 +110,7 @@
           const q = img.rotation
           
          // if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
-          if ((babyFox) == this.data.rotated && currentFox == this.data.animal ) {
+          if ((babyFox) == this.data.rotated && currentFox == this.data.animal) {
             console.log("Fox found3: " + currentFox)
             const detectedImageObject = this.el.object3D
             detectedImageObject.position.set(p.x, p.y, p.z)
@@ -120,6 +122,7 @@
 
         const imageLost = (event) => {
           babyFox = false;
+          currentFox = "";
           if (this.overlay.style.display == "none") {
             this.overlay.style.display = "block";
           }
