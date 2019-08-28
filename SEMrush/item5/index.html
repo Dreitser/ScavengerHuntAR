@@ -108,7 +108,7 @@
           const q = img.rotation
           
          // if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
-          if ((babyFox) == this.data.rotated && currentFox == this.data.animal.toString() ) {
+          if ((babyFox) == this.data.rotated && currentFox == this.data.animal ) {
             console.log("Fox found3: " + currentFox)
             const detectedImageObject = this.el.object3D
             detectedImageObject.position.set(p.x, p.y, p.z)
@@ -131,9 +131,8 @@
           const keysJoined = keys.join("\n")
 
             this.hudTextEl.innerText = "Hunt for the SEMrush Toolkit Foxes"
-            
-            this.imageList.innerText = (keys.length -1) + "/5 Foxes Found" ;
-            this.imageList.innerText += keysJoined;
+            foxesFound = (keys.length -1) + "/5 Foxes Found" ;
+            this.imageList.innerText = foxesFound + " " + keysJoined;
           
         }
 
