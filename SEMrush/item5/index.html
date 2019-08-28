@@ -86,10 +86,10 @@
                 }
               } else {
 
-               console.log("Fox found: " + name)
+            
                babyFox = false;
                currentFox = name;
-
+               console.log("Fox found1: " + currentFox)
                if ( !( name in detectedImageObjects ) ) {
                   detectedImageObjects[name] = 'found';
                 }
@@ -108,9 +108,10 @@
           const q = img.rotation
 
 
-
+          console.log("Fox found2: " + currentFox)
          // if ((img.scaledWidth > img.scaledHeight) == this.data.rotated) {
           if ((babyFox) == this.data.rotated && currentFox == this.data.animal ) {
+            console.log("Fox found3: " + currentFox)
             const detectedImageObject = this.el.object3D
             detectedImageObject.position.set(p.x, p.y, p.z)
             detectedImageObject.quaternion.set(q.x, q.y, q.z, q.w)
