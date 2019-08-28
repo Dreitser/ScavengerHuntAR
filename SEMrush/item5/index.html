@@ -131,8 +131,8 @@
           const keysJoined = keys.join("\n")
 
             this.hudTextEl.innerText = "Hunt for the SEMrush Toolkit Foxes"
-            foxesFound = (keys.length -1) + "/5 Foxes Found" ;
-            this.imageList.innerText = foxesFound + " " + keysJoined;
+            foxesFound = keys.length + "/5 Foxes Found" ;
+            this.imageList.innerText = foxesFound + "\n" + keysJoined;
           
         }
 
@@ -282,7 +282,7 @@
 
     </a-entity>
 
-    <a-entity position="0 4 9.2" image-target="rotated: true;" visible="false">
+    <a-entity position="0 4 9.2" image-target="rotated: true; animal: Social Media Fox;" visible="false">
 
       <a-entity id="frame-land-obj" scale="1.05 1.05 1.05" rotation="0 0 90" gltf-model="#frame-landscape"></a-entity>
       <a-text text-update value="" align="center" width="1.75" rotation="0 0 0" position="0 -0.5 0.04"></a-text>
