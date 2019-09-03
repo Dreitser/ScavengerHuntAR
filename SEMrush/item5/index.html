@@ -73,7 +73,7 @@
                     this.el.emit('updatetitle', { value: "Fox is not here." })
                     babyFox = true;
                 }
-                else if (d < 0.6) {
+                else if (d < 0.98) {
                     // 49% chance of being here
                     this.el.emit('updatetitle', { value: "Fox has been here recently." })
                     babyFox = true;
@@ -279,7 +279,7 @@
     </a-entity>
     <a-entity position="0 4 9.2" image-target="rotated: false; animal: Social Media Fox;" visible="false">
 
-      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" gltf-model="#fox2"></a-entity>
+      <a-entity id="frame-port-obj" position="0 0 0" scale=".5 .5 .5" rotation="90 0 0" gltf-model="#fox2"></a-entity>
       <a-text text-update value="" align="center" width="2.5" position="0 -0.6 0.04"></a-text>
       <a-light type="directional" intensity="1" target="#frame-port-obj" position="1.5 0.6 2.5"></a-light>
 
