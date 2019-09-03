@@ -78,13 +78,13 @@
                     this.el.emit('updatetitle', { value: "Fox has been here recently." })
                     babyFox = true;
                 }else{
-                    babyFox = false;
-                    // 1% chance of being here
-                    if ( !( name in detectedImageObjects ) ) {
-                      detectedImageObjects[name] = 'found';
-                    }
-                    console.log(JSON.stringify(detectedImageObjects))
-                    this.el.emit('updatetitle', { value: name })
+//                     babyFox = false;
+//                     // 1% chance of being here
+//                     if ( !( name in detectedImageObjects ) ) {
+//                       detectedImageObjects[name] = 'found';
+//                     }
+//                     console.log(JSON.stringify(detectedImageObjects))
+//                     this.el.emit('updatetitle', { value: name })
                 }
               } else {
 
