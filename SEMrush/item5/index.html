@@ -31,6 +31,7 @@
         this.imageList = document.getElementById("imageList")
         this.overlay = document.getElementById("overlay")
         var babyFox = false;
+        var showFox = false;
         var currentFox = "";
         const logEvent = (event) => {
           console.log('[log-event] ' + JSON.stringify(event))
@@ -72,19 +73,23 @@
                 if (d < 0.5){                    
                     this.el.emit('updatetitle', { value: "Fox is not here." })
                     babyFox = true;
+                    showFox = true;
                 }
                 else if (d < 0.99) {
                     // 49% chance of being here
                     this.el.emit('updatetitle', { value: "Fox has been here recently." })
                     babyFox = true;
+                    showFox = true;
                 }else{
-//                     babyFox = false;
-//                     // 1% chance of being here
-//                     if ( !( name in detectedImageObjects ) ) {
-//                       detectedImageObjects[name] = 'found';
-//                     }
-//                     console.log(JSON.stringify(detectedImageObjects))
-//                     this.el.emit('updatetitle', { value: name })
+                   if (!showFox){
+                   babyFox = false;
+                    // 1% chance of being here
+                     if ( !( name in detectedImageObjects ) ) {
+                      detectedImageObjects[name] = 'found';
+                     }
+                     console.log(JSON.stringify(detectedImageObjects))
+                     this.el.emit('updatetitle', { value: name })
+                   }
                 }
               } else {
 
