@@ -1,0 +1,27 @@
+<div id="container" class="collapsed">
+    <div class="outer">
+      <div id="closeButton" onclick="document.getElementById('container').classList.add('collapsed')">close</div>
+    </div>
+    <div id="contents"></div>
+    <div class="outer">Article provided by Wikipedia</div>
+  </div>
+
+  <a-scene
+    antialias="true"
+    xrweb="disableWorldTracking: true"
+    xrextras-generate-image-targets="primitive: artgallery-frame"
+    xrextras-almost-there
+    xrextras-loading
+    xrextras-runtime-error>
+
+    <a-assets>
+      <a-asset-item id="frame-model" src="frame.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera id="camera" position="0 4 10"
+      raycaster="objects: .cantap"
+      cursor="fuse:false; rayOrigin:mouse;">
+    </a-camera>
+    <a-light type="ambient" intensity="1.3"></a-light>
+    <a-light type="directional" intensity="3" position="1.5 2.5 0.6"></a-light>
+  </a-scene>
