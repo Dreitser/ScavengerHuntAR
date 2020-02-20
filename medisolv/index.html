@@ -50,7 +50,7 @@
     <div class="contact-form__input-group">
         <label class="contact-form__label" for="name">State</label>
         
-        <select name="state" id="state">
+        <select name="phone" id="phone">
           <option value="" selected="selected">Select a State</option>
           <option value="AL">Alabama</option>
           <option value="AK">Alaska</option>
@@ -130,7 +130,7 @@
     (function($){
         $("[name='fname']").prop("required", true);
         $("[name='lname']").prop("required", true);
-        $("[name='state']").prop("required", true);
+        $("[name='phone']").prop("required", true);
         $("[name='username']").prop("required", true);
         $("[name='company']").prop("required", true);
         $("[name='title']").prop("required", true);
@@ -145,7 +145,7 @@
                 data: JSON.stringify( { 
                 "fname": $('#fname').val(), 
                 "lname": $('#lname').val(),
-                "state": $('#state').val(),
+                "state": $('#phone').val(),
                 "username": $('#username').val(),
                 "company": $('#company').val(),
                 "title": $('#title').val(), 
