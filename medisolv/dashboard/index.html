@@ -19,7 +19,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Phone</th>
+                <th>State</th>
                  <th>Email</th>
                 <th>Company</th>
                 <th>Title</th>
@@ -45,7 +45,7 @@
                 success: function (data) {
 					for (var i = 0, len = data.length; i < len; i++) {
 						
-						arrayReturn.push([ data[i].fname, data[i].lname, data[i].phone, data[i].username, data[i].company, data[i].title, data[i].score ]);
+						arrayReturn.push([ data[i].fname, data[i].lname, data[i].state, data[i].username, data[i].company, data[i].title, data[i].score ]);
 					}
 				inittable(arrayReturn);
                 }
