@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="container" style="padding:50px 250px;">
-    <h1>Inbound Scavenger Hunt Players</h1>
+    <h1>Scavenger Hunt Players</h1>
 	<div id="header"></div>
 	<table id="photos" class="display" cellspacing="0" width="100%">
         <thead>
@@ -45,7 +45,7 @@
                 success: function (data) {
 					for (var i = 0, len = data.length; i < len; i++) {
 						
-						arrayReturn.push([ data[i].fname, data[i].lname, data[i].state, data[i].username, data[i].company, data[i].title, data[i].score ]);
+						arrayReturn.push([ data[i].fname, data[i].lname, data[i].phone, data[i].username, data[i].company, data[i].title, data[i].score ]);
 					}
 				inittable(arrayReturn);
                 }
