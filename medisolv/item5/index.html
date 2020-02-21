@@ -66,7 +66,9 @@
           const name = event.detail.name
           console.log(event.detail.name)
           currentFox = name;
-              if (name == "Social Media Fox")
+          const keys = Object.keys(detectedImageObjects)
+        
+              if (name == "Social Media Fox" && keys.length == 3)
               {
                 console.log("Fox Hole");
 
