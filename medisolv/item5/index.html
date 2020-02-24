@@ -66,22 +66,15 @@
           const name = event.detail.name
           console.log(event.detail.name)
           currentFox = name;
-          keys = Object.keys(detectedImageObjects)
-        
-              if (keys.length >= 3)
-              {
-              } else {
+          babyFox = false;
 
-            
-               babyFox = false;
-         
-               console.log("Fox found1: " + currentFox)
-               if ( !( name in detectedImageObjects ) ) {
-                  detectedImageObjects[name] = 'found';
-                }
-                console.log(JSON.stringify(detectedImageObjects))
-                this.el.emit('updatetitle', { value: name })
-              }
+           console.log("Fox found1: " + currentFox)
+           if ( !( name in detectedImageObjects ) ) {
+              detectedImageObjects[name] = 'found';
+            }
+            console.log(JSON.stringify(detectedImageObjects))
+            this.el.emit('updatetitle', { value: name })
+
               
            imageUpdated(event)
            logEvent(event)
