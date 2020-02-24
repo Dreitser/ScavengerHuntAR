@@ -70,33 +70,6 @@
         
               if (keys.length >= 3)
               {
-                console.log("Fox Hole");
-
-                var d = Math.random();
-                if (d < 0.5){                    
-                    window.location.href = "https://scavengerhuntar.com/medisolv/winnerlion/";
-                    this.el.emit('updatetitle', { value: "Lion is not here." })
-                    babyFox = true;
-                    showFox = true;
-                }
-                else if (d < 0.99) {
-                    // 49% chance of being here
-                    window.location.href = "https://scavengerhuntar.com/medisolv/winnerlion/";
-                    this.el.emit('updatetitle', { value: "Lion has been here recently." })
-                    babyFox = true;
-                    showFox = true;
-                }else{
-                   if (!showFox){
-                  window.location.href = "https://scavengerhuntar.com/medisolv/winnerbose/";
-                   babyFox = false;
-                    // 1% chance of being here
-                     if ( !( name in detectedImageObjects ) ) {
-                      detectedImageObjects[name] = 'found';
-                     }
-                     console.log(JSON.stringify(detectedImageObjects))
-                     this.el.emit('updatetitle', { value: name })
-                   }
-                }
               } else {
 
             
@@ -161,6 +134,36 @@
             this.imageList.innerText = "You’ve captured 3/4 lions. Be careful, the last one is hard to tame."
           }
           
+          if(keys.length == 4){
+            
+                console.log("Fox Hole");
+
+                var d = Math.random();
+                if (d < 0.5){                    
+                    window.location.href = "https://scavengerhuntar.com/medisolv/winnerlion/";
+                    this.el.emit('updatetitle', { value: "Lion is not here." })
+                    babyFox = true;
+                    showFox = true;
+                }
+                else if (d < 0.99) {
+                    // 49% chance of being here
+                    window.location.href = "https://scavengerhuntar.com/medisolv/winnerlion/";
+                    this.el.emit('updatetitle', { value: "Lion has been here recently." })
+                    babyFox = true;
+                    showFox = true;
+                }else{
+                   if (!showFox){
+                  window.location.href = "https://scavengerhuntar.com/medisolv/winnerbose/";
+                   babyFox = false;
+                    // 1% chance of being here
+                     if ( !( name in detectedImageObjects ) ) {
+                      detectedImageObjects[name] = 'found';
+                     }
+                     console.log(JSON.stringify(detectedImageObjects))
+                     this.el.emit('updatetitle', { value: name })
+                   }
+                }
+          }
         }
 
         console.log(window.XR)
